@@ -1,0 +1,8 @@
+{
+  "name": "nexrank-mlbb-boosting",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-sites.mjs"
+  }
+}
