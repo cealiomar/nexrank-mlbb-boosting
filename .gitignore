@@ -3,3 +3,6 @@ outputs/
 work/
 *.log
 dist/
+
+# local dev-server config
+.claude/

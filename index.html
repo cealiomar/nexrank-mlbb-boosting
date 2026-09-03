@@ -5,142 +5,217 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="theme-color" content="#080b12" />
   <title>NEXRANK — MLBB Boosting</title>
+  <meta name="description" content="حاسبة أسعار فورية لرفع رانك Mobile Legends بالجنيه المصري. اختر رانكك الحالي وهدفك وشوف السعر مفصّل قبل ما تطلب." />
+  <meta property="og:title" content="NEXRANK — MLBB Boosting" />
+  <meta property="og:description" content="اختر رانكك وشوف السعر فورًا. Pilot أو Self Play مع فريق محترف." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/ranks/mythic.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#calculator" data-i18n="a11y.skip">تخطَّ إلى الحاسبة</a>
   <canvas id="scene" aria-hidden="true"></canvas>
   <div class="grain" aria-hidden="true"></div>
 
   <header class="header">
-    <a class="logo" href="#top"><span class="logo-gem">N</span><span>NEXRANK</span></a>
-    <nav>
-      <a href="#calculator" data-i18n="nav.services">الخدمات</a>
-      <a href="#how" data-i18n="nav.how">كيف نعمل</a>
-      <a href="#contact" data-i18n="nav.contact">تواصل معنا</a>
-    </nav>
+    <a class="logo" href="#top"><span class="logo-gem">N</span><span translate="no">NEXRANK</span></a>
     <div class="header-actions">
-      <button id="langButton" class="lang-button" type="button">EN</button>
-      <a href="#calculator" class="button button-small" data-i18n="nav.start">ابدأ طلبك</a>
+      <button id="langButton" class="icon-button" type="button" aria-label="Switch language">EN</button>
+      <a class="wa-button" href="https://wa.me/201030303397" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Z"/><path d="M8.5 7.8c.3 0 .5.1.7.5l.7 1.6c.1.3 0 .5-.2.7l-.5.5c-.2.2-.2.4-.1.6a7 7 0 0 0 3.2 3.2c.2.1.4.1.6-.1l.5-.5c.2-.2.4-.3.7-.2l1.6.7c.4.2.5.4.5.7 0 1-.8 1.8-1.8 1.9-.4 0-.7 0-1.2-.2a11 11 0 0 1-6.5-6.5c-.2-.5-.2-.8-.2-1.2.1-1 .9-1.8 1.9-1.8Z"/></svg>
+        <span data-i18n="nav.whatsapp">واتساب</span>
+      </a>
     </div>
   </header>
 
   <main id="top">
     <section class="calculator-section" id="calculator">
-      <div class="section-title">
-        <div><span class="overline" data-i18n="calc.overline">حاسبة السعر الفورية</span><h2 data-i18n="calc.title">اختَر رانكك وشوف السعر فورًا.</h2></div>
-        <p data-i18n="calc.subtitle">حدد الـDivision والنجوم بدقة، ثم أرسل الطلب مباشرة.</p>
+      <div class="section-title" data-reveal>
+        <div class="title-lead">
+          <span class="overline" data-i18n="calc.overline">حاسبة السعر الفورية</span>
+          <h1 data-i18n="calc.title">اختَر رانكك وشوف السعر فورًا.</h1>
+        </div>
+        <p data-i18n="calc.subtitle">حدد رانكك ونجومك، والسعر بيتحدث معاك خطوة بخطوة.</p>
       </div>
 
-      <div class="service-switch" role="tablist">
-        <button class="service-button active" data-service="rank" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17 17 5M8 5h9v9" /></svg><b data-i18n="tabs.rank">رفع الرانك</b></button>
-        <button class="service-button" data-service="selfplay" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h7l-1 8 8-12h-7z" /></svg><b>Self Play</b><small data-i18n="tabs.popular">الأكثر طلباً</small></button>
-        <button class="service-button" data-service="global" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z" /></svg><b>Hero Global</b></button>
+      <div class="service-switch" role="tablist" aria-label="Services" data-reveal>
+        <button class="service-button active" data-service="rank" type="button" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17 17 5M8 5h9v9" /></svg>
+          <b data-i18n="tabs.rank">رفع الرانك</b>
+        </button>
+        <button class="service-button" data-service="selfplay" type="button" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h7l-1 8 8-12h-7z" /></svg>
+          <b>Self Play</b>
+        </button>
+        <button class="service-button" data-service="global" type="button" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.2 6.8L21 12l-6.8 2.2L12 21l-2.2-6.8L3 12l6.8-2.2z" /></svg>
+          <b>Hero Global</b>
+        </button>
       </div>
 
-      <div class="builder">
+      <div class="builder" data-reveal>
         <div class="builder-main">
           <div id="rankBuilder">
-            <div class="step-head"><span>01</span><div><h3 data-i18n="rank.step">اختر رحلتك</h3><p data-i18n="rank.stepHelp">اضغط على البداية أو الهدف، ثم اختَر الرانك مرة واحدة.</p></div></div>
 
-            <div class="journey-points">
-              <button id="currentPoint" class="journey-point active" data-endpoint="current" type="button">
-                <span class="point-copy"><small data-i18n="rank.current">رانكك الحالي</small><strong id="currentPointLabel">Epic V</strong><em data-i18n="rank.change">تغيير</em></span>
-                <img id="currentPointIcon" src="assets/ranks/epic.png" width="64" height="64" alt="Epic" />
+            <div class="step-head">
+              <span>01</span>
+              <div><h2 data-i18n="rank.step">اختر رحلتك</h2><p data-i18n="rank.stepHelp">اضغط على البداية أو الهدف، وبعدين اختَر من الشريط.</p></div>
+            </div>
+
+            <div class="journey">
+              <button id="currentEnd" class="journey-end active" data-endpoint="current" type="button">
+                <img id="currentEndIcon" src="assets/ranks/epic.png" width="52" height="52" alt="" />
+                <span><small data-i18n="rank.current">رانكك الحالي</small><span class="end-line"><strong id="currentEndLabel">Epic V</strong><em id="currentEndStars"></em></span></span>
               </button>
-              <div class="journey-line"><i></i><span>←</span></div>
-              <button id="targetPoint" class="journey-point" data-endpoint="target" type="button">
-                <span class="point-copy"><small data-i18n="rank.target">هدفك</small><strong id="targetPointLabel">Mythic</strong><em data-i18n="rank.change">تغيير</em></span>
-                <img id="targetPointIcon" src="assets/ranks/mythic.png" width="64" height="64" alt="Mythic" />
+              <div class="journey-arrow"><span class="journey-meter"><strong id="neededStars">50</strong><small data-i18n="rank.starUnit">نجمة</small></span></div>
+              <button id="targetEnd" class="journey-end" data-endpoint="target" type="button">
+                <img id="targetEndIcon" src="assets/ranks/mythic.png" width="52" height="52" alt="" />
+                <span><small data-i18n="rank.target">هدفك</small><span class="end-line"><strong id="targetEndLabel">Mythic</strong><em id="targetEndStars"></em></span></span>
               </button>
             </div>
 
-            <div id="rankPickerWrap" class="rank-picker-wrap">
-              <div class="picker-heading"><span id="pickerPrompt">اختَر رانكك الحالي</span><small data-i18n="rank.oneTap">ضغطة واحدة فقط</small></div>
-              <div id="rankPicker" class="rank-picker"></div>
-            </div>
 
-            <div id="starGoalBar" class="star-goal-bar hidden">
-              <label id="currentAbsoluteWrap"><span data-i18n="rank.starsNow">نجومك الآن</span><input id="currentAbsoluteStars" type="number" min="0" value="0" /></label>
-              <div class="needed-stars"><small data-i18n="rank.youNeed">تحتاج</small><strong id="neededStars">50</strong><span data-i18n="rank.starUnit">نجمة</span></div>
-              <label id="targetAbsoluteWrap"><span data-i18n="rank.starsGoal">هدف النجوم</span><input id="targetAbsoluteStars" type="number" min="0" value="0" /></label>
-            </div>
 
-            <button id="precisionToggle" class="precision-toggle open" type="button"><span>＋</span><span data-i18n="rank.precision">Division والنجوم بالتحديد</span></button>
-            <div id="precisionPanel" class="precision-panel">
-              <div class="precision-column">
-                <strong data-i18n="rank.current">رانكك الحالي</strong>
-                <label><span>Division</span><select id="currentDivision"></select></label>
-                <label class="range-label"><span><span data-i18n="rank.stars">النجوم</span><b id="currentStarsValue">0</b></span><input id="currentStars" type="range" min="0" max="4" value="0" /></label>
+            <div class="rail-block">
+             <div class="rail-inner">
+              <div class="rail-head">
+                <span id="railPrompt">اختَر رانكك الحالي</span>
+                <b id="railNow" translate="no">Epic V</b>
               </div>
-              <div class="precision-column">
-                <strong data-i18n="rank.target">هدفك</strong>
-                <label><span>Division</span><select id="targetDivision"></select></label>
-                <label class="range-label"><span><span data-i18n="rank.stars">النجوم</span><b id="targetStarsValue">0</b></span><input id="targetStars" type="range" min="0" max="24" value="0" /></label>
+              <div class="rail-row">
+                <button id="railPrev" class="rail-nudge" type="button" aria-label="خطوة للخلف">−</button>
+                <div id="rankRail" class="rail" role="listbox" aria-label="Rank"></div>
+                <button id="railNext" class="rail-nudge" type="button" aria-label="خطوة للأمام">+</button>
               </div>
+
+              <div id="starsBlock" class="stars-block">
+                <span class="stars-label"><span data-i18n="rank.stars">النجوم</span></span>
+                <div id="starDots" class="star-dots" role="group" aria-label="Stars"></div>
+                <div id="starStepper" class="star-stepper hidden">
+                  <button id="starMinus" class="rail-nudge" type="button" aria-label="نجمة أقل">−</button>
+                  <b id="starValue">0</b>
+                  <button id="starPlus" class="rail-nudge" type="button" aria-label="نجمة أكتر">+</button>
+                </div>
+              </div>
+             </div>
             </div>
 
-            <div class="step-head step-two"><span>02</span><div><h3 data-i18n="method.title">اختَر طريقة اللعب</h3><p data-i18n="method.help">يمكنك تغييرها في أي وقت قبل إرسال الطلب.</p></div></div>
-            <div class="method-grid">
-              <label class="method-option selected"><input type="radio" name="method" value="pilot" checked /><span class="radio-dot"></span><span><b>Pilot</b><small data-i18n="method.pilot">الفريق ينفذ الخدمة</small></span><strong data-i18n="method.base">السعر الأساسي</strong></label>
-              <label class="method-option"><input type="radio" name="method" value="selfplay" /><span class="radio-dot"></span><span><b>Self Play</b><small data-i18n="method.self">تلعب بنفسك مع الفريق</small></span><strong>+70%</strong></label>
+            <div class="step-head step-two">
+              <span>02</span>
+              <div><h2 data-i18n="method.title">اختَر طريقة اللعب</h2><p data-i18n="method.help">كل اختيار مكتوب جنبه تأثيره على السعر.</p></div>
             </div>
-            <div class="extras">
-              <label><input id="heroOnly" type="checkbox" /><span class="check-ui">✓</span><span><b data-i18n="extras.hero">هيرو محدد فقط</b><small>+15%</small></span></label>
-              <label><input id="express" type="checkbox" /><span class="check-ui">✓</span><span><b data-i18n="extras.express">تنفيذ سريع</b><small>+25%</small></span></label>
+
+            <div class="option-list">
+              <label class="option selected">
+                <input type="radio" name="method" value="pilot" checked />
+                <span class="option-mark"></span>
+                <span class="option-copy"><b>Pilot</b><small data-i18n="method.pilot">الفريق ينفذ الخدمة</small></span>
+                <span class="option-price" data-i18n="method.base">السعر الأساسي</span>
+              </label>
+              <label class="option">
+                <input type="radio" name="method" value="selfplay" />
+                <span class="option-mark"></span>
+                <span class="option-copy"><b>Self Play</b><small data-i18n="method.self">تلعب بنفسك مع الفريق</small></span>
+                <span class="option-price up">+70%</span>
+              </label>
+              <label class="option">
+                <input id="heroOnly" type="checkbox" />
+                <span class="option-mark check"></span>
+                <span class="option-copy"><b data-i18n="extras.hero">هيرو محدد فقط</b><small data-i18n="extras.heroSub">نلعب بهيرو انت تختاره</small></span>
+                <span class="option-price up">+15%</span>
+              </label>
+              <label class="option">
+                <input id="express" type="checkbox" />
+                <span class="option-mark check"></span>
+                <span class="option-copy"><b data-i18n="extras.express">تنفيذ سريع</b><small data-i18n="extras.expressSub">أولوية في الدور</small></span>
+                <span class="option-price up">+25%</span>
+              </label>
             </div>
+
             <div id="specificHeroPicker" class="hero-picker hidden">
-              <span class="hero-picker-icon">✦</span>
-              <label><span data-i18n="extras.chooseHero">اختَر الهيرو اللي هنلعب به</span><input id="specificHero" list="mlbbHeroes" autocomplete="off" placeholder="اكتب اسم الهيرو — مثال: Fanny" /></label>
+              <label><span data-i18n="extras.chooseHero">اختَر الهيرو اللي هنلعب به</span>
+                <input id="specificHero" list="mlbbHeroes" autocomplete="off" placeholder="اسم الهيرو — مثال: Fanny…" />
+              </label>
             </div>
           </div>
 
           <div id="globalBuilder" class="hidden">
-            <div class="step-head"><span>01</span><div><h3 data-i18n="global.title">اطلع Global بهيروك</h3><p data-i18n="global.help">سعر مبدئي، والتأكيد النهائي بعد مراجعة نقاط الهيرو.</p></div></div>
-            <div class="global-grid">
-              <label><span data-i18n="global.hero">اسم الهيرو</span><input id="heroName" list="mlbbHeroes" autocomplete="off" placeholder="مثال: Fanny" /></label>
-              <label><span>Hero Power</span><input id="heroPower" type="number" min="0" value="1000" /></label>
+            <div class="step-head">
+              <span>01</span>
+              <div><h2 data-i18n="global.title">اطلع Global بهيروك</h2><p data-i18n="global.help">سعر مبدئي، والتأكيد النهائي بعد مراجعة نقاط الهيرو.</p></div>
+            </div>
+            <div class="field-grid">
+              <label><span data-i18n="global.hero">اسم الهيرو</span><input id="heroName" list="mlbbHeroes" autocomplete="off" placeholder="مثال: Fanny…" /></label>
+              <label><span>Hero Power</span><input id="heroPower" type="number" inputmode="numeric" min="0" value="1000" /></label>
               <label><span data-i18n="global.goal">الهدف</span><select id="globalGoal"><option value="500">Global Top 500</option><option value="100" selected>Global Top 100</option><option value="50">Global Top 50</option><option value="10">Global Top 10</option></select></label>
               <label><span data-i18n="global.method">طريقة اللعب</span><select id="globalMethod"><option value="pilot">Pilot</option><option value="selfplay">Self Play (+70%)</option></select></label>
             </div>
-            <label class="upload"><input type="file" accept="image/*" /><span>＋</span><span><b data-i18n="global.upload">ارفع Screenshot للـHero Power</b><small data-i18n="global.optional">اختياري الآن، مطلوب عند التأكيد</small></span></label>
+            <label class="upload">
+              <input type="file" accept="image/*" />
+              <span class="upload-plus" aria-hidden="true">＋</span>
+              <span><b data-i18n="global.upload">ارفع Screenshot للـHero Power</b><small data-i18n="global.optional">اختياري الآن، مطلوب عند التأكيد</small></span>
+            </label>
           </div>
         </div>
 
-        <aside class="invoice">
-          <div class="invoice-head"><span><small data-i18n="invoice.title">فاتورتك</small><b data-i18n="invoice.egp">بالجنيه المصري</b></span><i>EGP</i></div>
-          <div class="invoice-route"><img id="invoiceFromIcon" src="assets/ranks/epic.png" width="42" height="42" alt="" /><span><small data-i18n="invoice.from">من</small><b id="invoiceFrom">Epic V</b></span><i>←</i><span><small data-i18n="invoice.to">إلى</small><b id="invoiceTo">Mythic</b></span><img id="invoiceToIcon" src="assets/ranks/mythic.png" width="42" height="42" alt="" /></div>
-          <div id="invoiceRows" class="invoice-rows"></div>
-          <div class="promo"><input id="promoInput" placeholder="Promo code" /><button id="applyPromo" type="button" data-i18n="invoice.apply">تطبيق</button></div>
-          <p id="promoMessage" class="promo-message"></p>
-          <div class="invoice-total"><span><small data-i18n="invoice.total">الإجمالي</small><em data-i18n="invoice.nocharge">لا يوجد دفع الآن</em></span><strong id="totalPrice">0 ج.م</strong></div>
-          <div class="payment-box">
-            <div class="payment-box-head"><span data-i18n="payment.title">طرق الدفع المتاحة</span><small data-i18n="payment.help">اختَر الأنسب بعد تأكيد الطلب</small></div>
-            <div class="payment-logos" aria-label="Payment methods">
-              <span class="payment-brand instapay"><img src="assets/payments/instapay.png" alt="InstaPay" loading="lazy" /><b>InstaPay</b></span>
-              <span class="payment-brand vodafone"><img src="assets/payments/vodafone.svg" alt="Vodafone Cash" loading="lazy" /><b>Vodafone Cash</b></span>
-              <span class="payment-brand binance"><img src="assets/payments/binance.svg" alt="Binance Pay" loading="lazy" /><b>Binance Pay</b></span>
-              <span class="payment-brand paypal"><img src="assets/payments/paypal.svg" alt="PayPal" loading="lazy" /><b>PayPal</b></span>
+        <div id="invoicePanel" class="invoice-panel">
+          <button id="sheetGrab" class="sheet-grab" type="button" aria-label="اقفل التفاصيل"></button>
+          <aside class="invoice" aria-label="فاتورتك">
+            <div class="invoice-head">
+              <span><small data-i18n="invoice.title">فاتورتك</small><b data-i18n="invoice.egp">بالجنيه المصري</b></span>
+              <i>EGP</i>
             </div>
-          </div>
-          <button id="orderButton" class="button button-primary button-wide" type="button" data-i18n="invoice.confirm">تأكيد الطلب</button>
-          <p class="invoice-note"><span>✓</span><span data-i18n="invoice.note">نراجع التوفر ونتواصل معك قبل الدفع</span></p>
-        </aside>
+            <div class="invoice-route">
+              <img id="invoiceFromIcon" src="assets/ranks/epic.png" width="40" height="40" alt="" />
+              <span><small data-i18n="invoice.from">من</small><b id="invoiceFrom">Epic V</b></span>
+              <i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14m-5-6 6 6-6 6"/></svg></i>
+              <span><small data-i18n="invoice.to">إلى</small><b id="invoiceTo">Mythic</b></span>
+              <img id="invoiceToIcon" src="assets/ranks/mythic.png" width="40" height="40" alt="" />
+            </div>
+            <div id="invoiceRows" class="invoice-rows"></div>
+            <div class="promo">
+              <input id="promoInput" placeholder="Promo code" autocomplete="off" />
+              <button id="applyPromo" type="button" data-i18n="invoice.apply">تطبيق</button>
+            </div>
+            <p id="promoMessage" class="promo-message" role="status"></p>
+            <div class="invoice-total">
+              <span><small data-i18n="invoice.total">الإجمالي</small><em data-i18n="invoice.nocharge">لا يوجد دفع الآن</em></span>
+              <strong id="totalPrice">0 ج.م</strong>
+            </div>
+            <div class="payment-box">
+              <div class="payment-box-head"><span data-i18n="payment.title">طرق الدفع المتاحة</span><small data-i18n="payment.help">اختَر الأنسب بعد تأكيد الطلب</small></div>
+              <div class="payment-logos">
+                <span class="payment-brand"><img src="assets/payments/instapay.png" alt="" width="26" height="22" loading="lazy" /><b>InstaPay</b></span>
+                <span class="payment-brand"><img src="assets/payments/vodafone.svg" alt="" width="26" height="22" loading="lazy" /><b>Vodafone Cash</b></span>
+                <span class="payment-brand"><img src="assets/payments/binance.svg" alt="" width="26" height="22" loading="lazy" /><b>Binance Pay</b></span>
+                <span class="payment-brand"><img src="assets/payments/paypal.svg" alt="" width="26" height="22" loading="lazy" /><b>PayPal</b></span>
+              </div>
+            </div>
+            <button id="orderButton" class="button button-primary button-wide" type="button"><span data-i18n="invoice.confirm">تأكيد الطلب</span><i class="button-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></i></button>
+            <p class="invoice-note"><span aria-hidden="true">✓</span><span data-i18n="invoice.note">نراجع التوفر ونتواصل معك قبل الدفع</span></p>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <section class="proof-strip">
-      <div><span>✓</span><p><b data-i18n="proof.manual">لعب يدوي</b><small data-i18n="proof.manualSub">بدون Bots أو Scripts</small></p></div>
-      <div><span>⌁</span><p><b data-i18n="proof.contact">تواصل مباشر</b><small data-i18n="proof.contactSub">واتساب وإيميل</small></p></div>
-      <div><span>↗</span><p><b data-i18n="proof.track">متابعة واضحة</b><small data-i18n="proof.trackSub">من الطلب إلى الإكمال</small></p></div>
-      <div><span>✦</span><p><b data-i18n="proof.global">Hero Global</b><small data-i18n="proof.globalSub">خدمة مخصصة لكل هيرو</small></p></div>
+    <section class="proof-strip" data-reveal-group>
+      <div><span aria-hidden="true">✓</span><p><b data-i18n="proof.manual">لعب يدوي</b><small data-i18n="proof.manualSub">بدون Bots أو Scripts</small></p></div>
+      <div><span aria-hidden="true">⌁</span><p><b data-i18n="proof.contact">تواصل مباشر</b><small data-i18n="proof.contactSub">واتساب وإيميل</small></p></div>
+      <div><span aria-hidden="true">↗</span><p><b data-i18n="proof.track">متابعة واضحة</b><small data-i18n="proof.trackSub">من الطلب إلى الإكمال</small></p></div>
+      <div><span aria-hidden="true">✦</span><p><b data-i18n="proof.global">Hero Global</b><small data-i18n="proof.globalSub">خدمة مخصصة لكل هيرو</small></p></div>
     </section>
 
     <section class="how" id="how">
-      <div class="section-title"><div><span class="overline" data-i18n="how.overline">كيف تعمل الخدمة</span><h2 data-i18n="how.title">ثلاث خطوات. بدون تعقيد.</h2></div></div>
-      <div class="how-grid">
+      <div class="section-title" data-reveal>
+        <div class="title-lead">
+          <span class="overline" data-i18n="how.overline">كيف تعمل الخدمة</span>
+          <h2 data-i18n="how.title">ثلاث خطوات. بدون تعقيد.</h2>
+        </div>
+      </div>
+      <div class="how-grid" data-reveal-group>
         <article><span>01</span><h3 data-i18n="how.one">اختَر هدفك</h3><p data-i18n="how.oneSub">حدد الرانك وطريقة اللعب وشاهد السعر.</p></article>
         <article><span>02</span><h3 data-i18n="how.two">أكد الطلب</h3><p data-i18n="how.twoSub">اترك بيانات التواصل ليصل الطلب للفريق.</p></article>
         <article><span>03</span><h3 data-i18n="how.three">ابدأ اللعب</h3><p data-i18n="how.threeSub">نؤكد التوفر والوقت ثم تبدأ الخدمة.</p></article>
@@ -157,28 +232,49 @@
     <option value="Angela"></option><option value="Estes"></option><option value="Floryn"></option><option value="Rafaela"></option><option value="Mathilda"></option><option value="Diggie"></option><option value="Chip"></option><option value="Carmilla"></option><option value="Lolita"></option><option value="Kaja"></option>
   </datalist>
 
-  <footer id="contact"><a class="logo" href="#top"><span class="logo-gem">N</span><span>NEXRANK</span></a><p data-i18n="footer.note">خدمة مستقلة وغير تابعة رسمياً لـMobile Legends: Bang Bang.</p><span><a class="admin-link" href="admin.html">لوحة الطلبات</a> · © 2026</span></footer>
+  <footer id="contact">
+    <a class="logo" href="#top"><span class="logo-gem">N</span><span translate="no">NEXRANK</span></a>
+    <p data-i18n="footer.note">خدمة مستقلة وغير تابعة رسمياً لـMobile Legends: Bang Bang.</p>
+    <span><a class="admin-link" href="admin.html" data-i18n="footer.admin">لوحة الطلبات</a> · © 2026</span>
+  </footer>
 
-  <div id="mobileCheckout" class="mobile-checkout" aria-label="ملخص الطلب">
-    <span><small data-i18n="invoice.total">الإجمالي</small><strong id="mobileTotalPrice">0 ج.م</strong></span>
-    <button id="mobileOrderButton" class="button button-primary" type="button" data-i18n="invoice.confirm">تأكيد الطلب</button>
+  <div id="sheetScrim" class="sheet-scrim" hidden></div>
+
+  <div id="mobileCheckout" class="mobile-checkout">
+    <button id="summaryToggle" class="summary-toggle" type="button" aria-expanded="false" aria-controls="invoicePanel">
+      <span class="summary-copy">
+        <small><span data-i18n="invoice.total">الإجمالي</span> · <span id="summaryStars">50</span> <span data-i18n="rank.starUnit">نجمة</span></small>
+        <strong id="mobileTotalPrice">0 ج.م</strong>
+      </span>
+      <span class="summary-chevron" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></span>
+    </button>
+    <button id="mobileOrderButton" class="button button-primary" type="button"><span data-i18n="invoice.confirm">تأكيد الطلب</span><i class="button-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></i></button>
   </div>
 
   <dialog id="orderDialog">
-    <button id="closeDialog" class="dialog-close" type="button">×</button>
+    <button id="closeDialog" class="dialog-close" type="button" aria-label="اغلق">×</button>
     <div id="contactStep">
-      <span class="overline" data-i18n="dialog.overline">تأكيد الطلب</span><h2 data-i18n="dialog.title">نتواصل معك فين؟</h2><p data-i18n="dialog.subtitle">لن يتم تحصيل أي مبلغ. الفريق يراجع طلبك أولاً.</p>
+      <span class="overline" data-i18n="dialog.overline">تأكيد الطلب</span>
+      <h2 data-i18n="dialog.title">نتواصل معك فين؟</h2>
+      <p data-i18n="dialog.subtitle">لن يتم تحصيل أي مبلغ. الفريق يراجع طلبك أولاً.</p>
       <form id="contactForm">
-        <label><span data-i18n="dialog.name">الاسم</span><input id="customerName" required /></label>
-        <label><span data-i18n="dialog.whatsapp">رقم واتساب</span><input id="customerWhatsapp" required type="tel" placeholder="+20" /></label>
-        <label><span data-i18n="dialog.email">الإيميل</span><input id="customerEmail" required type="email" /></label>
+        <label><span data-i18n="dialog.name">الاسم</span><input id="customerName" required autocomplete="name" /></label>
+        <label><span data-i18n="dialog.whatsapp">رقم واتساب</span><input id="customerWhatsapp" required type="tel" inputmode="tel" autocomplete="tel" placeholder="+20" /></label>
+        <label><span data-i18n="dialog.email">الإيميل</span><input id="customerEmail" required type="email" inputmode="email" autocomplete="email" spellcheck="false" /></label>
         <label><span data-i18n="dialog.region">السيرفر</span><select id="customerRegion"><option>Middle East</option><option>Europe</option><option>Asia</option><option>Other</option></select></label>
         <label class="payment-field"><span data-i18n="dialog.payment">طريقة الدفع المفضلة</span><select id="paymentMethod"><option>InstaPay</option><option>Vodafone Cash</option><option>Binance Pay / USDT</option><option>PayPal</option><option data-i18n="dialog.paymentLater">أحددها لاحقًا</option></select></label>
         <button class="button button-primary button-wide" type="submit" data-i18n="dialog.submit">إرسال الطلب</button>
       </form>
     </div>
-    <div id="successStep" class="success hidden"><span>✓</span><h2 data-i18n="success.title">طلبك وصل!</h2><p><span data-i18n="success.number">رقم الطلب</span> <b id="orderId">#0000</b></p><p id="orderSyncStatus">تم حفظ الطلب وجاري إشعار الفريق.</p><button id="finishOrder" class="button button-primary" type="button" data-i18n="success.done">تمام</button></div>
+    <div id="successStep" class="success hidden">
+      <span aria-hidden="true">✓</span>
+      <h2 data-i18n="success.title">طلبك وصل</h2>
+      <p><span data-i18n="success.number">رقم الطلب</span> <b id="orderId">#0000</b></p>
+      <p id="orderSyncStatus" aria-live="polite">تم حفظ الطلب وجاري إشعار الفريق.</p>
+      <button id="finishOrder" class="button button-primary" type="button" data-i18n="success.done">تمام</button>
+    </div>
   </dialog>
+
   <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
